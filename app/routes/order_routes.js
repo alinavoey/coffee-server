@@ -49,7 +49,7 @@ router.post('/orders', requireToken, (req, res, next) => {
 // INDEX
 // GET /orders
 router.get('/orders', requireToken, (req, res, next) => {
-    Order.find()
+    Order.find({ owner: req.user.id })
       .then(orders => {
         // `orders` will be an array of Mongoose documents
         // we want to convert each one to a POJO, so we use `.map` to
